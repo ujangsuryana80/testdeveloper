@@ -14,7 +14,10 @@ class TabelController extends Controller
 
     public function index()
     {
-        return view('v_tabel');
+        $data = [
+            'tabel' => $this->TabelModel->allData(),
+        ];
+        return view('v_tabel', $data);
     }
 
 

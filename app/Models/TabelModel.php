@@ -14,4 +14,9 @@ class TabelModel extends Model
          DB::table('tabel')->insert($data);
     }
 
+    public function allData()
+    {
+         return DB::table('tabel')->get();
+    }
+
 }

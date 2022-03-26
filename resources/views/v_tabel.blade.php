@@ -51,18 +51,25 @@
                                         </thead>
 
                                         <tbody>
+                                        @php $no = 1; @endphp
+                                        @foreach ($tabel as $data)
+                  
                                         <tr>
-                                            <td align="center">1</td>
-                                            <td align="center"><img src="{{asset('bootsrap')}}/images/gallery/work-1.jpg" width="150" height="150"></td>
-                                            <td>Ujang Suryana</td>
-                                            <td>ujangsuryana80@gmail.com</td>
+                                            <td align="center">{{ $no++ }}</td>
+                                            <td align="center"><img src="{{asset('bootsrap')}}/images/gallery/{{ $data->foto }}" width="150" height="150"></td>
+                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $data->email }}</td>
                                             <td>
-                                                <a href="/tabel/edit" class="btn btn-warning">Edit</a> 
+                                                <a href="/tabel/edit/{{ $data->id_tabel }}" class="btn btn-warning">Edit</a> 
                                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg">Delete</button>
                                             </td>
                                         </tr>
+
+                                        @endforeach
+                                        
                                         </tbody>
                                     </table>
+
                                     <!--  Modal content for the above example -->
                                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -76,7 +83,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
-                                                    <button type="button" class="btn btn-primary waves-effect waves-light">Ya, Hapus</button>
+                                                    <a href="/tabel/delete/{{ $data->id_tabel }}" type="button" class="btn btn-primary waves-effect waves-light">Ya, Hapus</a>
                                                 </div>
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
