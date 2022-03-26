@@ -30,19 +30,35 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">        
-                                        <form>
+                                        <form action="/tabel/insert" method="POST" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="form-group">
                                                 <label>Nama</label>
-                                                <input type="text" class="form-control" name="nama_tabel1"/>
+                                                <input type="text" class="form-control" name="nama" value="{{ old('nama') }}"/>
+                                                <div class="text-danger">
+                                                    @error('nama')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control" name="nama_tabel1"/>
+                                                <input type="email" class="form-control" name="email" value="{{ old('email') }}"/>
+                                                <div class="text-danger">
+                                                    @error('email')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Foto</label>
-                                                <input type="file" class="form-control" name="foto">
-
+                                                <input type="file" class="form-control" name="foto" value="{{ old('foto') }}">
+                                                <div class="text-danger">
+                                                    @error('foto')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <div>
