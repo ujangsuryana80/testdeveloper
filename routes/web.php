@@ -19,3 +19,4 @@ Route::get('/tabel/add', [TabelController::class, 'add']);
 Route::get('/tabel/edit/{id_tabel}', [TabelController::class, 'edit']);
 Route::post('/tabel/insert', [TabelController::class, 'insert']);
 Route::post('/tabel/update/{id_tabel}', [TabelController::class, 'update']);
+Route::get('/tabel/delete/{id_tabel}', [TabelController::class, 'delete']);

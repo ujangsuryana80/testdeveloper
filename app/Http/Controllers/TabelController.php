@@ -104,5 +104,15 @@ class TabelController extends Controller
         return redirect()->route('tabel')->with('pesan', 'Data berhasil diupdate');
 
     }
+
+    public function delete($id_tabel)
+    {
+        $tabel = $this->TabelModel->detailData($id_tabel);
+        if($tabel->foto <> ""){
+            unlink(public_path('bootsrap/images/gallery') . '/' . $tabel->foto);
+        }
+        $this->TabelModel->deleteData($id_tabel);
+        return redirect()->route('tabel')->with('pesan', 'Data berhasil dihapus');
+    }
    
 }

@@ -61,7 +61,7 @@
                                             <td>{{ $data->email }}</td>
                                             <td>
                                                 <a href="/tabel/edit/{{ $data->id_tabel }}" class="btn btn-warning">Edit</a> 
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg">Delete</button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg{{ $data->id_tabel }}">Delete</button>
                                             </td>
                                         </tr>
 
@@ -70,12 +70,14 @@
                                         </tbody>
                                     </table>
 
+                                    @php $no = 1; @endphp
+                                    @foreach ($tabel as $data)
                                     <!--  Modal content for the above example -->
-                                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal fade bs-example-modal-lg{{ $data->id_tabel }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Nama : Ujang Suryana</h5>
+                                                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Nama : {{ $data->nama }}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                 </div>
                                                 <div class="modal-body">
@@ -89,6 +91,7 @@
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
 
+                                    @endforeach
                                 </div>
                             </div>
                         </div> <!-- end col -->

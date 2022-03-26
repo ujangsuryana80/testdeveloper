@@ -31,4 +31,11 @@ class TabelModel extends Model
             ->update($data);
     }
 
+    public function deleteData($id_tabel)
+    {
+         DB::table('tabel')
+            ->where('id_tabel', $id_tabel)
+            ->delete();
+    }
+
 }
