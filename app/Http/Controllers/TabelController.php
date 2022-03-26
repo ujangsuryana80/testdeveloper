@@ -26,10 +26,19 @@ class TabelController extends Controller
         return view('v_tables_add');
     }
 
-    public function edit()
+
+    public function edit($id_tabel)
     {
 
-        return view('v_edittabel');
+        if(!$this->TabelModel->detailData($id_tabel)){
+            abort(404);
+        }
+
+        $data = [
+            'tabel' => $this->TabelModel->detailData($id_tabel),
+        ];
+
+        return view('v_edittabel', $data);
     }
 
     public function insert()
@@ -63,6 +72,37 @@ class TabelController extends Controller
 
     }
 
-   
+    public function update($id_tabel)
+    {
 
+        Request()->validate([
+            'nama'       => 'required',
+        ],[
+            'nama.required' => 'data nama wajib diisi !!',
+        ]);
+
+        //upload gambar/foto
+        if(Request()->foto <> ""){
+            $file       = Request()->foto;
+            $fileName   = Request()->nama . '.' . $file->extension();
+            $file->move(public_path('bootsrap/images/gallery'), $fileName);
+
+            $data = [
+                'nama'  => Request()->nama,
+                'foto'  => $fileName,
+            ];
+
+            $this->TabelModel->editData($id_tabel, $data);
+
+        }else{
+            $data = [
+                'nama'  => Request()->nama,
+            ];
+
+            $this->TabelModel->editData($id_tabel, $data);
+        }
+        return redirect()->route('tabel')->with('pesan', 'Data berhasil diupdate');
+
+    }
+   
 }

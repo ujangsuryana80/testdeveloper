@@ -19,4 +19,16 @@ class TabelModel extends Model
          return DB::table('tabel')->get();
     }
 
+    public function detailData($id_tabel)
+    {
+         return DB::table('tabel')->where('id_tabel', $id_tabel)->first();
+    }
+
+    public function editData($id_tabel, $data)
+    {
+         DB::table('tabel')
+            ->where('id_tabel', $id_tabel)
+            ->update($data);
+    }
+
 }

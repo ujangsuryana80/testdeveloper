@@ -30,23 +30,40 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">        
-                                        <form>
+                                        <form action="/tabel/update/{{ $tabel->id_tabel }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="form-group">
                                                 <label>Nama</label>
-                                                <input type="text" class="form-control" name="nama_tabel1"/>
+                                                <input type="text" class="form-control" name="nama" value="{{ $tabel->nama }}"/>
+                                                <input type="hidden" class="form-control" name="id_tabel" value="{{ $tabel->id_tabel }}"/>
+                                                <div class="text-danger">
+                                                    @error('nama_tabel')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control" name="nama_tabel1"/>
+                                                <input type="email" class="form-control" name="email" value="{{ $tabel->email }}" readonly />
+                                                <div class="text-danger">
+                                                    @error('email')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Foto</label>
-                                                <img src="{{asset('bootsrap')}}/images/gallery/work-1.jpg" width="300" height="300">
+                                                <img src="{{asset('bootsrap')}}/images/gallery/{{ $tabel->foto }}" width="300" height="300">
                                             </div>
                                             <div class="form-group">
                                                 <label>Ganti Foto</label>
-                                                <input type="file" class="form-control" name="foto">
-
+                                                <input type="file" class="form-control" name="foto" value="{{ $tabel->foto }}">
+                                                <div class="text-danger">
+                                                    @error('foto')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <div>
